@@ -3,3 +3,23 @@
         margin-bottom: 20px;     /* 아래쪽 여백 */
         padding : 10px;           /* 안쪽(4방향) 여백*/
 }
+
+.container{
+    width: 800px;
+    padding: 100px;
+    border: 5px solid purple;
+}
+
+.lbl1{
+    background-color: rgb(226, 226, 226);
+    width: 120px;
+    display: inline-block;
+}
+
+.mydiv2{
+    margin: 10px 0;
+}
+
+hr{
+    margin: 0;
+}
