@@ -13,29 +13,29 @@
         <hr />
         <div class="mydiv2">
             <label class="lbl1">아이디</label>
-            <input type="text" placeholder="아이디" />
+            <input type="text" placeholder="아이디" id="userId"/>
             <input type="button" value="중복확인">
         </div>
         <hr style="margin: 0;" />
         <div class="mydiv2">
             <label class="lbl1">비밀번호</label>
-            <input type="password" placeholder="비밀번호" />
+            <input type="password" placeholder="비밀번호" id="userPw" />
         </div>
         <hr />
         <div class="mydiv2">
             <label class="lbl1">비밀번호 확인</label>
-            <input type="password" placeholder="비밀번호" />
+            <input type="password" placeholder="비밀번호" id="userPwCheck"/>
         </div>
         <hr />
         <div class="mydiv2">
             <label class="lbl1">이름</label>
-            <input type="text" placeholder="홍길동" />
+            <input type="text" placeholder="홍길동" id="userName" />
         </div>
         <hr />
         
         <div class="mydiv2">
             <label class="lbl1">이메일</label>
-            <input type="text" placeholder="이메일" />
+            <input type="text" placeholder="이메일" id="userEmail"/>
             <label>@</label>
             <select>
                 <option>naver.com</option>
@@ -46,22 +46,76 @@
         <hr />
         <div class="mydiv2">
             <label class="lbl1">전화번호</label>
-            <input type="text" placeholder="000-0000-0000" />
+            <input type="text" placeholder="000-0000-0000" id="userPhoneNumber" />
         </div>
         <hr />
         <div class="mydiv2">
             <label class="lbl1"></label>
-            <input type="checkbox" />
+            <input type="checkbox" id="checkBox"/>
             <label>약관동의</label>
         </div>    
         <div class="mydiv2">
             <label class="lbl1"></label>
-            <input type="button"  value="회원가입"/>
+            <input type="button"  value="회원가입" id="loginBtn"/>
             <a href="login.html">
                 <input type="button"  value="로그인"/>
             </a>
         </div>
     </div>
+    <script>
+        const btn = document.getElementById('loginBtn');
+        const id = document.getElementById('userId');
+        const pw = document.getElementById('userPw');
+        const pwCheck = document.getElementById('userPwCheck');
+        const name = document.getElementById('userName');
+        const email = document.getElementById('userEmail');
+        const phoneNumber = document.getElementById('userPhoneNumber');
+        const checkBox = document.getElementById('checkBox');
+        console.log(btn,id,pw,pwCheck,name,phoneNumber,email,checkBox);
+        btn.addEventListener('click', function() {
+            if(id.value ===""){
+                alert('아이디를 입력하세요.')
+                id.focus();
+                return false;
+            }
+            if(pw.value ===""){
+                alert('비밀번호를 입력하세요.')
+                pw.focus();
+                return false;
+            }
+            if(pwCheck.value ===""){
+                alert('비밀번호를 입력하세요.')
+                pwCheck.focus();
+                return false;
+            }
+            if(pw.value !== pwCheck.value){
+                alert('비밀번호가 일치하지 않습니다.')
+                pwCheck.focus()
+                return false;
+            }
+            if(name.value ===""){
+                alert('이름를 입력하세요.')
+                name.focus();
+                return false;
+            }
+            if(email.value ===""){
+                alert('이메일를 입력하세요.')
+                email.focus();
+                return false;
+            }
+            if(phoneNumber.value ===""){
+                alert('전화번호를 입력하세요.')
+                phoneNumber.focus();
+                return false;
+            }
+            if(checkBox.checked === false){
+                alert('약관동의하세요');
+                return false;
+            }
+
+            console.log('벡엔드로 데이터 전송')
+        })
+    </script>
 </body>
 </html>
 

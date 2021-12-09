@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,16 +24,19 @@
 
         <div class="mydiv2">
             <label class="lbl1">체크(여러개 선택)</label>
-            <input type="checkbox" />
-            <input type="checkbox" />
+            <input type="checkbox" class="chk1" value='html'/>html
+            <input type="checkbox" class="chk1"value='css'/>css
+            <input type="checkbox" class="chk1" value='javascript'/>javascript
+            <input type="button" id="btn1" value="체크된 개수 확인"/>
             <br />
         </div>
 
         <div class="mydiv2">
             <label class="lbl1">라디오(1개만 선택)</label> 
-            <input type="radio" name="a" />
-            <input type="radio" name="a" />
-            <input type="radio" name="a" />
+            <input type="radio" name="a" value ='1' />
+            <input type="radio" name="a" value="2" />
+            <input type="radio" name="a" value="3"/>
+            <input type="button" id="btn2" value="체크된 개수 확인"/>
             <input type="radio" />
             <br />
         </div>
@@ -69,8 +72,29 @@
             <input type="date" />
             <br />
         </div>
-
-
     </div>
+    <script>
+        const btn1 = document.getElementById('btn1')
+        
+        // for(const 임시변수 of 배열변수)
+        btn1.addEventListener('click', function(){
+            const chk1 = document.getElementsByClassName('chk1')
+            for(const tmp of chk1){
+                if(tmp.checked === true){
+                    console.log(tmp.value)
+                }
+            }
+        })
+        
+        const btn2 = document.getElementById('btn2')
+        btn2.addEventListener('click', function(){
+            const chk2 = document.getElementsByName('a')
+            for(const tmp of chk2){
+                if(tmp.checked === true){
+                    console.log(tmp.value)
+                }
+            }
+        })
+    </script>
 </body>
 </html>
