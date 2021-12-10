@@ -85,18 +85,20 @@
       console.log(xhrData.data.survived.length)
       console.log(xhrData.data.survived)
       // console.log(xhrData.data.survived.name.length)
+
+      // for 이중반복문을 이용하여 만들기
       for(let i =0; i< xhrData.data.survived.length; i++){
         const tr = document.createElement('tr')
         tbody[0].append(tr)
         for(let j=0; j< xhrData.data.survived[i].length; j++){
           const td = document.createElement('td')
           // console.log(j)
-          td.innerText = xhrData.data.survived[j]
+          td.textContent = xhrData.data.survived[i][j]
           tr.append(td)
         }
         // console.log(i)
       }
-      console.log(xhrData.data.survived[1])
+      console.log(xhrData.data.survived[120][1])
       // console.log(xhrData.data.survived[0])
       // console.log(surv);
       // console.log(dSurv);
