@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>memberlist.html</title>
+  <link rel="stylesheet" href="css/mystyle1.css">
+</head>
+
+<body>
+  <div class="container">
+    <h3>회원목록</h3>
+    <table id="tbody" border="1">
+      <thead>
+        <tr>
+          <th>아이디</th>
+          <th>이름</th>
+          <th>나이</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>동방신기</td>
+          <td>최강창민</td>
+          <td>22</td>
+        </tr>
+        <tr>
+          <td>오마이걸</td>
+          <td>지호</td>
+          <td>25</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <script>
+    //axios, fetch 벡엔드로부터 데이터를 받는 라이브러리
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://ihongss.com/json/exam12.json');
+    xhr.send();
+    //벡엔드 호출 후에 데이터가 전송 완료 되면
+    xhr.addEventListener('load', function(){
+      // 어떤 데이터가 왔는지 출력
+      console.log(typeof xhr.response) 
+      console.log(xhr.response) 
+      // object array, json의 node 타입
+      // response를 바로 type을 찍어보면 string이 찍힌다
+      const data = JSON.parse(xhr.response)
+      // string을 object로 변환
+      console.log(data) 
+      for(let tmp of data){
+        tbody.innerHTML += `<tr>
+                            <td>${tmp.id}</td>
+                            <td>${tmp.name}</td>
+                            <td>${tmp.age}</td>
+                          </tr>`
+      }
+    })
+
+    
+    // console.log('aa') 오는 순서가 제 각각, 실행컨텍스트에 가는 건 아님
+    // 그러니 데이터를 써먹을 거면 scope 안에 넣어야 한다.
+    // 데이터 받아서 완료된 시점과 상관없다
+    
+  </script>
+</body>
+
+</html>

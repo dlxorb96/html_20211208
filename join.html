@@ -14,7 +14,7 @@
         <div class="mydiv2">
             <label class="lbl1">아이디</label>
             <input type="text" placeholder="아이디" id="userId"/>
-            <input type="button" value="중복확인">
+            <input type="button" value="중복확인" id="btnIdCheck"/>
         </div>
         <hr style="margin: 0;" />
         <div class="mydiv2">
@@ -71,8 +71,10 @@
         const email = document.getElementById('userEmail');
         const phoneNumber = document.getElementById('userPhoneNumber');
         const checkBox = document.getElementById('checkBox');
-        console.log(btn,id,pw,pwCheck,name,phoneNumber,email,checkBox);
+        const btnIdCheck = document.getElementById('btnIdCheck')
+        console.log(btnIdCheck,btn,id,pw,pwCheck,name,phoneNumber,email,checkBox);
         btn.addEventListener('click', function() {
+        
             if(id.value ===""){
                 alert('아이디를 입력하세요.')
                 id.focus();
@@ -114,7 +116,42 @@
             }
 
             console.log('벡엔드로 데이터 전송')
+
+            
         })
+        
+        
+        // 아이디를 입력할 때 실행
+        id.addEventListener('keyup',function(){
+            if(id.value.length > 0){
+                const url = 'http://ihongss.com/json/idcheck.json?userid='+`${id.value}`
+                let xhr = new XMLHttpRequest()
+                xhr.open('GET', url)
+                xhr.send()
+
+                // 호출 후 결과값 받기
+                xhr.addEventListener( 'load', function(){
+                    const data = JSON.parse(xhr.response);
+                    console.log(data)
+
+                    if (data.ret ==='n'){
+                        btnIdCheck.value = '사용불가'
+                    }
+
+                    else if(data.ret ==="y"){
+                        btnIdCheck.value = '사용가능'
+                    }
+                })
+
+            }
+            else{
+                btnIdCheck.value = '중복확인'
+            }
+
+                // 벡엔드로 현재의 아이디 값을 전달하면
+                // 백엔드에서 사용가능, 사용불가를 알려줌
+                // btnChk.value값을 사용가능, 사용불가로 변경
+            })
     </script>
 </body>
 </html>

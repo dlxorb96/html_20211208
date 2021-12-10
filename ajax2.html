@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ajax2.html</title>
+  <link rel="stylesheet" href="css/mystyle1.css">
+</head>
+
+<body>
+  <div class="container">
+    <h3>생존자</h3>
+    <table border="1">
+      <thead>
+        
+      </thead>
+      
+      <tbody id="tbody1">
+
+      </tbody>
+    </table>
+    <hr />
+    <h3>사망자</h3>
+    <table border="1">
+      <thead>
+        
+      </thead>
+      
+      <tbody id="tbody2">
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <script>
+    const url = 'https://raw.githubusercontent.com/IBM/taxinomitis/master/resources/datasets/numbers/titanic.json'
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.send()
+
+    xhr.addEventListener('load', function(){
+      const xhrData = JSON.parse(xhr.response);
+      const fields = xhrData.metadata.fields
+      console.log(fields)
+      const thead = document.getElementsByTagName('thead')
+      console.log(thead)
+      let th = "<tr>"
+      for(let tmp of fields){
+        th += `<td>${tmp.name}</td>`
+      }
+      th += "<tr>"
+      thead[0].innerHTML = th
+      thead[1].innerHTML = th
+
+      // 표에 생존자, 사망자 넣기
+      const surv = xhrData.data.survived
+      const dSurv =xhrData.data.did_not_survive
+      const tbody = document.getElementsByTagName('tbody');
+      // for(let tmp of surv){
+      // tbody[0].innerHTML += `<tr>
+      //                         <td>${tmp[0]}</td>
+      //                         <td>${tmp[1]}</td>
+      //                         <td>${tmp[2]}</td>
+      //                         <td>${tmp[3]}</td>
+      //                         <td>${tmp[4]}</td>
+      //                         <td>${tmp[5]}</td>
+      //                         <td>${tmp[6]}</td>
+      //                       </tr>`
+      //                     }
+      // for(let tmp of dSurv){
+      //   tbody[1].innerHTML += `<tr>
+      //                           <td>${tmp[0]}</td>
+      //                           <td>${tmp[1]}</td>
+      //                           <td>${tmp[2]}</td>
+      //                           <td>${tmp[3]}</td>
+      //                           <td>${tmp[4]}</td>
+      //                           <td>${tmp[5]}</td>
+      //                           <td>${tmp[6]}</td>
+      //                         </tr>`
+      
+      // }
+      console.log(xhrData.data.survived.length)
+      console.log(xhrData.data.survived)
+      // console.log(xhrData.data.survived.name.length)
+      for(let i =0; i< xhrData.data.survived.length; i++){
+        const tr = document.createElement('tr')
+        tbody[0].append(tr)
+        for(let j=0; j< xhrData.data.survived[i].length; j++){
+          const td = document.createElement('td')
+          // console.log(j)
+          td.innerText = xhrData.data.survived[j]
+          tr.append(td)
+        }
+        // console.log(i)
+      }
+      console.log(xhrData.data.survived[1])
+      // console.log(xhrData.data.survived[0])
+      // console.log(surv);
+      // console.log(dSurv);
+    })
+
+
+
+  </script>
+
+
+</body>
+
+</html>

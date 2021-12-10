@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ajax1.html</title>
+</head>
+
+<body>
+  <div class="container">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>꽃받침 길이</th>
+          <th>꽃받침 너비</th>
+          <th>꽃잎 길이</th>
+          <th>꽃잎 너비</th>
+          <th>꽃의 종류</th>
+        </tr>
+      </thead>
+
+      <tbody id="tbody">
+
+      </tbody>
+    </table>
+  </div>
+  <script>
+    const tbody = document.getElementById('tbody')
+    let xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://raw.githubusercontent.com/domoritz/maps/master/data/iris.json')
+    xhr.send()
+      xhr.addEventListener('load', function () {
+        const data = JSON.parse(xhr.response)
+        console.log(data)
+        for(let tmp of data){
+          tbody.innerHTML += `<tr>
+                                <td>${tmp.sepalLength}</td>
+                                <td>${tmp.sepalWidth}</td>
+                                <td>${tmp.petalLength}</td>
+                                <td>${tmp.petalWidth}</td>
+                                <td>${tmp.species}</td>
+                              </tr>`
+        }
+      })
+
+  </script>
+</body>
+
+</html>

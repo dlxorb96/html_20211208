@@ -1,45 +1,85 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>board.html</title>
-    <link href="css/mystyle1.css" rel="stylesheet" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>board.html</title>
+	<link href="css/mystyle1.css" rel="stylesheet" />
 </head>
+
 <body>
-    <div class="container">
-        <h3>게시판 목록</h3>
-        <hr />
+	<div class="container">
+		<h3>게시판 목록</h3>
+		<hr />
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>조회수</th>
-                    <th>날짜</th>
-                </tr>
-            </thead>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+					<th>날짜</th>
+				</tr>
+			</thead>
 
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>제목</td>
-                    <td>가나다</td>
-                    <td>24</td>
-                    <td>2021/12/08</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>제목</td>
-                    <td>가나다</td>
-                    <td>64</td>
-                    <td>2021/12/08</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>제목</td>
+					<td>가나다</td>
+					<td>24</td>
+					<td>2021/12/08</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>제목</td>
+					<td>가나다</td>
+					<td>64</td>
+					<td>2021/12/08</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+		const a = 1;		console.log(a);    1
+		const b =[2,3,4];		console.log(b[0]); 1
+
+		const b1 = document.getElementsByTagName('tbody')
+		console.log(typeof b1);
+		console.log(b1[0].innerText)
+		console.log(b1[0].innerHTML)
+		b1[0].innerHTML += 
+											"<tr>" + 
+												"<td>111111</td>"+
+												"<td>제목</td>"+
+												"<td>가나다</td>"+
+												"<td>24</td>"+
+												"<td>2021/12/08</td>"+
+											"</tr>";
+    const items = [
+			{no:3, title:'제목3', writer:'a30', hit:2,rdgdate:'2021/12/10'},
+			{no:4, title:'제목4', writer:'a30', hit:12,rdgdate:'2021/12/10'}
+		]
+		for(let tmp of items){
+			console.log(tmp.no, tmp.title, tmp.writer )
+			b1[0].innerHTML += 
+											`<tr>
+												<td>${tmp.no}</td>
+												<td>${tmp.title}</td>
+												<td>${tmp.writer}</td>
+												<td>${tmp.hit}</td>
+												<td>${tmp.rdgdate}</td>
+											</tr>`;
+		}
+		console.log('0')
+		console.log('l')
+		console.log('^')
+	</script>
+
 </body>
+
 </html>
