@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/mystyle1.css">
+</head>
+
+<body>
+	<div class="container">
+		<form action="전송 목적지 url이래" method="post" enctype="multipart/form-data" >
+			<div class="image"></div>
+			<input type="file" multiple  id="file"/>
+			<input type="button" value="제출">
+		</form>
+		<a href="test.html?justest=1">1</a>
+		<a href="test.html?justest=2">2</a>
+		<a href="test.html?justest=4">3</a>
+		<a href="test.html?justest=13">4</a>
+		<a href="test.html?justest=5">5</a>
+	</div>
+</body>
+
+
+	<script>
+		const image = document.querySelector('.image');
+		const file = document.querySelector('#file');
+
+		file.addEventListener('change', (e)=>{
+			console.log(e)
+			// for(let tmp of e.target.files){
+				const reader = new FileReader();
+				// console.log(tmp)
+				reader.addEventListener('load', function(e2){
+				// console.log(e2.target.result)
+				image.innerHTML += `<img src = "${e2.target.result}">`
+			})
+				reader.readAsDataURL(e.target.files[0])
+		// }
+
+		})
+
+		
+	</script>
+</html>

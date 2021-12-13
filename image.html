@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>image.html</title>
+  <link rel="stylesheet" href="css/mystyle1.css">
+</head>
+
+<body>
+  <div class="container">
+    <h3>1. 이미지 첨부 기본</h3>
+    <img src="imgs/default.png" id="img" style="width: 350px; height: 300px;">
+    <form action="" method="post" enctype="multipart/form-data">
+      <!-- action에는 서버 주소 -->
+      <input type="file" id="file"  />
+      <input type="button" value="이미지업로드" />
+    </form>
+
+    <hr />
+    
+    <h3>2. 이미지 첨부 숨김</h3>
+    <img src="imgs/default.png" id="img2" style="width: 350px; height: 300px;
+    cursor: pointer;">
+    <input type="file" id="file2" multiple style="display: none; ">
+    
+    <hr />
+
+    <h3>3. 이미지 n개 첨부</h3>
+    <input type="file" id="file3" multiple />
+    <div id="out3"></div>
+
+  </div>
+
+  <script>
+    ////////////////////////////////////1번
+    const file = document.querySelector('#file')
+    const img = document.querySelector('#img')
+    
+    file.addEventListener('change', function(e){
+      console.log(e.target.files[0])
+
+      if(e.target.files[0]){
+        console.log('파일 첨부한 상태')
+        // 파일읽기 라이브러리(기본제공)
+        const reader = new FileReader();
+        // 파일을 읽음
+        reader.readAsDataURL(e.target.files[0])
+        reader.addEventListener('load', function(e1){
+          console.log('파일읽기 완료시점');
+          console.log(e1);
+          img.src = e1.target.result;
+        });
+      }
+      else{
+        console.log('파일 첨부하지 않은 상태');
+        img.src = 'imgs/default.png';
+      }
+      console.log(e.target.files[0])
+
+    });
+
+    /////////////////////////////////////////2번
+    //위의 태그 찾기(selector 수행)
+    const file2 = document.querySelector('#file2');
+    const img2 = document.querySelector('#img2');
+    img2.addEventListener('click', function(){
+
+      file2.click()
+    });
+    
+    file2.addEventListener('change', function(e){
+    if(e.target.files[0]){
+      console.log(2)
+
+      const reader = new FileReader();
+      reader.addEventListener('load',function(e2){
+        img2.src =e2.target.result
+      })
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    else{
+    img2.src = 'imgs/default.png';
+    }
+    // console.log(e.target.files[0])
+    console.log(3)
+
+    // img2.addEventListener('load',function(){
+    //   console.log('test')
+    //   img2.addEventListener('load',function(){
+    //     console.log('test2')
+      })
+    
+
+
+    
+    
+
+    /////////////////////////////////////////3번
+    const file3 = document.querySelector('#file3');
+    const out3 = document.querySelector('#out3');
+
+    // //1
+    // file3.addEventListener('change', (e)=>{})
+
+    // //2
+    // file3.addEventListener('change', function(e){
+
+    // })
+
+    //3
+    file3.onchange = function(e){
+      console.log(e)
+      out3.innerHTML = ""
+      if(e.target.files[0]){
+        for(let tmp of e.target.files){
+          const reader = new FileReader();
+        // 파일을 읽음
+          reader.addEventListener('load', function(e1){
+            console.log(e1.target);
+            out3.innerHTML += `<img src ="${e1.target.result}" 
+            style="width :350px; height : 300px;">`
+        });
+          reader.readAsDataURL(tmp)
+        }
+      }
+      else{
+        console.log('첨부 no~')
+        out3.innerHTML = '<img src = "imgs/default.png">';
+      }
+    }
+  </script>
+</body>
+
+</html>

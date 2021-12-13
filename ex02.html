@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex02.html</title>
+    <link rel="stylesheet" href="css/mystyle1.css">
+</head>
+<body>
+    <div class="container">
+        <input type="number" id="n1">
+        <input type="button" id="b1" value="구구단 출력">
+        <div id="o1">구구단 출력</div>
+    </div>
+
+    <script>
+        const n1 = document.querySelector('#n1')
+        const b1 = document.querySelector('#b1')
+        const o1 = document.querySelector('#o1')
+
+        b1.addEventListener('click', function(){
+            const nb = n1.value;
+            o1.innerHTML = `${nb}단 </br>`
+            for(let i =1; i< 10; i++){
+                o1.innerHTML += `${nb} * ${i} = ${nb * i} <br /> `             
+            }
+            o1.innerHTML += '<hr />'
+            const arr = [1,2,3,4,5,6,7,8,9];
+            for(let tmp of arr){
+                o1.innerHTML += `${nb} * ${tmp} = ${nb * tmp} <br /> `
+            // console.log(tmp);
+        }
+        })
+
+        
+
+        // for(let i=0; i < arr.length; i++){
+        //     // console.log(arr[i])
+        // }
+        
+    </script>
+</body>
+</html>
