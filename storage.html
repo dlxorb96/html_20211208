@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>storage.html</title>
+    <link rel="stylesheet" href="css/mystyle1.css">
+</head>
+<body>
+    <div class="container">
+        <h3>저장소</h3>
+        <input type="text" id="userid" placeholder="아이디" />
+        <input type="password" id="userpw" placeholder="암호" />
+        <input type="checkbox" id="chk"  /> 아이디/암호저장
+        <input type="button" id="btn" value="로그인" />
+
+    </div>
+
+    <script>
+        const id = document.querySelector('#userid')
+        const pw = document.querySelector('#userpw')
+        const chk = document.querySelector('#chk')
+        const btn = document.querySelector('#btn')
+
+        if(localStorage.getItem("CHK") === "1" ){
+            id.value = localStorage.getItem("UID")
+            pw.value = localStorage.getItem("UPW")
+            chk.checked = localStorage.getItem("CHK")
+        }
+
+
+
+        chk.addEventListener('change', ()=>{
+            if(chk.checked){
+                localStorage.setItem('UID',id.value)
+                localStorage.setItem('UPW',pw.value)
+                localStorage.setItem('CHK',1)
+            }
+            else{
+                localStorage.removeItem('UID')
+                localStorage.removeItem('UPW')
+                localStorage.removeItem('CHK')
+            }
+        })
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차트</title>
+    <link rel="stylesheet" href="css/mystyle1.css">
+</head>
+<body>
+    <div class="container">
+        <h3>차트 실습</h3>
+        <!-- <div style="width: 100px"> -->
+        <!-- <img src="imgs/고양이.jpeg" /> -->
+        <!-- </div> -->
+        <div style="width: 600px;">
+            <canvas id="mychart"></canvas>
+        </div>
+        <input type="button" value="차트데이터변경" id="btn">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        const ctx = document.querySelector('#mychart')
+        .getContext("2d");
+
+
+        console.log(ctx)
+        // 표시할 chart의 데이터 및 색상 설정
+        const config = {
+            type: 'bar',
+            data: {
+                labels : ['A', 'B', 'C', 'D', 'E', 'F'],
+                datasets:[{
+                    label : 'chart1', 
+                    data: [23,46,76,34,35,89],
+                    backgroundColor: [
+                    'rgba(255,99,13,0.2)',
+                    'rgba(255,255,13,0.2)',
+                    'rgba(1,99,13,0.2)',
+                    'rgba(125,99,1,0.2)',
+                    'rgba(255,99,255,0.2)',
+                    'rgba(25,9,13,0.8)'],
+                    borderWidth:10,
+                }]
+            }
+        }
+
+        // 실제로 chart가 생성되는 시점
+        const mychart = new Chart(ctx, config)
+
+        const btn = document.querySelector('#btn')
+        btn.addEventListener('click', ()=>{
+            let data = config.data.datasets[0].data
+            console.log(data)
+            for(let i=0; i<data.length; i++){
+                data[i] = Math.floor(Math.random() * 100 + 1)
+            }
+            mychart.update()
+        })
+
+    </script>
+</body>
+</html>

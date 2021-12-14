@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>storage1.html</title>
+    <link rel="stylesheet" href="css/mystyle1.css">
+</head>
+<body>
+    <div class="container">
+        <textarea id="txt1" rows="5"></textarea><br />
+        <label for="col1">텍스트 색상 변경</label>
+        <input type="color" id="col1" ><br />
+
+        <label for="col2">배경 색상 변경</label>
+        <input type="color" id="col2"><br />
+
+        <input type="button" id="btn1" value="색상 저장"/>
+        <input type="button" id="btn2" value="초기화"/>
+        <input type="button" id="btn3" value="색상 읽기"/>
+    </div>
+
+    <script>
+        const txt1 = document.querySelector('#txt1')
+        const btn1 = document.querySelector('#btn1')
+        const btn2 = document.querySelector('#btn2')
+        const btn3 = document.querySelector('#btn3')
+        const col1 = document.querySelector('#col1')
+        const col2 = document.querySelector('#col2')
+        console.log(col1)
+
+        col1.addEventListener('change', ()=>{
+            txt1.style.color = col1.value
+        })
+
+        col2.addEventListener('change', ()=>{
+            txt1.style.backgroundColor = col2.value
+        })
+
+
+
+        // 색상저장
+        btn1.addEventListener('click',()=>{
+            const obj = {color : col1.value, 
+                        bgcolor: col2.value
+            }
+
+            //localstorage에서는 string으로 저장해야 함
+            //object > string으로 변경 후에 저장
+
+            localStorage.setItem('COLORS', JSON.stringify(obj))
+        })
+        // 초기화
+        btn2.addEventListener('click',()=>{
+            localStorage.removeItem('COLORS') //key가 COLORS인 것만 지우기
+            // localStorage.clear() 전체 지우기
+            
+            col1.value = '#000000'
+            col2.value = '#ffffff'
+            txt1.style.color = '#000000'
+            txt1.style.backgroundColor = '#ffffff'
+        })
+        // 색상 읽기
+        btn3.addEventListener('click',()=>{
+            const str = JSON.parse(localStorage.getItem('COLORS'))
+            console.log(str)
+            if(str){
+            txt1.style.color = str.color
+            txt1.style.backgroundColor = str.bgcolor
+            }
+        })
+
+        // string > object =>JSON.parse(변환 전 문자)
+        // object > string =>JSON.stringfy(변환 전 오브젝트)
+
+    </script>
+
+
+</body>
+</html>
